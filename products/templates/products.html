@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block products_list %}
+
+    <ol>
+         {% for product in products %}
+            <li>
+                <a href='{% url "detail" product_slug=product.url %}'>
+                    {{ product.title }}
+                </a>
+            </li>
+         {% endfor %}
+    </ol>
+
+    <a href='/'>Return to homepage</a>
+{% endblock products_list %}
