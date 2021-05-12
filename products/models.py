@@ -22,3 +22,6 @@ class Products(models.Model):
     brand = models.CharField(max_length=255)
     model = models.CharField(max_length=255)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True)
+
+    def __str__(self):
+        return f'{self.brand} {self.model}'
