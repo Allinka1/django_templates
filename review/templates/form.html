@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block doctitle %}Review form{% endblock %}
+
+{% block content %}
+    <form action='{% url "review" %}' method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+    <a href='/'>Return to homepage</a>
+{% endblock content %}
