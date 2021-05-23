@@ -4,7 +4,8 @@ from django.shortcuts import render
 
 
 from django.http import HttpResponse
-
+from products.models import Products
+from review.models import Review
 
 def home(request):
     return render(request, 'home.html')
@@ -16,26 +17,28 @@ def about(request):
 
 def product_detail(request, product_slug):
 
-    return render(request, "product_detail.html", {'product_slug': product_slug})
+    product = Products.objects.get(pid=product_slug)
+    reviews = Review.objects.filter(product_id=product.pid)
+
+    context = {
+        'title': 'Product Detail',
+        'product': product,
+        'reviews': reviews
+    }
+
+    return render(request, "product_detail.html", context)
 
     # return HttpResponse(f"This a product detail page: {product_slug}")
 
 
 def products_list(request):
 
-    products = [
-            {'title': 'Product №1', 'url': 'product-1'},
-            {'title': 'Product №2', 'url': 'product-2'},
-            {'title': 'Product №3', 'url': 'product-3'},
-            {'title': 'Product №4', 'url': 'product-4'},
-            {'title': 'Product №5', 'url': 'product-5'},
-        ]
+    products = Products.objects.all()
 
 
     context = {
         'title': 'Products List',
-        'products': products,
-        'list': [1, 2, 3, 4, 5]
+        'products': products
     }
 
     return render(request, 'products.html', context)

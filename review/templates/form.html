@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block doctitle %}Review form{% endblock %}
+{% block doctitle %}Review form|{{ block.super }}{% endblock %}
 
 {% block content %}
     <form action='{% url "review" %}' method='post'>

@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import timedelta
 from products.models import Products
+from django.contrib.auth.models import User
 
 
 
@@ -16,6 +17,7 @@ class Review(models.Model):
     product = models.ForeignKey(Products, on_delete=models.DO_NOTHING, null=False)
     rating = models.IntegerField(choices=RATE_CHOICES, default=5)
     created_at = models.DateTimeField()
+    aurhor_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=False)
 
     def save(self, **kwargs):
         if not self.rid:

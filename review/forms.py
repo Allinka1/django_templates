@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 class ReviewForm(forms.Form):
     review = forms.CharField(label='Product Review', widget=forms.Textarea, required=False)
     rating = forms.IntegerField(label='Product Rate')
-    # product = forms.ModelChoiceField(queryset=Products.objects.all
+    product = forms.ModelChoiceField(queryset=Products.objects.all())
 
     def clean_review(self):
         review = self.cleaned_data.get('review')
@@ -22,3 +22,8 @@ class ReviewForm(forms.Form):
 
     def clean(self):
         super().clean()
+
+
+class SearchForm(forms.Form):
+    find = forms.CharField(label='Enter a word: ', required=False)
+    is_my = forms.CharField(widget=forms.CheckboxInput, required=False)

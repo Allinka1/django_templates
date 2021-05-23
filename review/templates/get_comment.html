@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block doctitle %}Get comment|{{ block.super }}{% endblock %}
+
+{% block content %}
+    <form method='get'>
+        {{ search_form.as_p }}
+        <input type="submit">
+    </form>
+    <br>
+    {% if reviews.count > 0 %}
+        {% for review in reviews %}
+                <li>
+                        {{ review.body }} ||
+                        {{ review.rating }}
+                </li>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}

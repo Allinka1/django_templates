@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 {% block hello %}
 <h1>hello</h1>
-<p>{{ product_slug }}</p>
+<p>{{ product_slug }}
+{{ product }}</p>
+{% for review in reviews %}
+            <li>
+                    {{ review.body }} ||
+                    {{ review.rating }}
+            </li>
+         {% endfor %}
 <a href='/'>Return to homepage</a>
 {% endblock hello %}
 
